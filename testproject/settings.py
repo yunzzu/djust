@@ -135,3 +135,9 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') #collectstatic 명령어를 통해 어디로 파일들이 모일 것인지를 알려줌
+STATICFILES_DIRS = [      # 앱에 종속되어 있지 않는 static 폴더/파일들을 따로 만들 수 있음
+    BASE_DIR / "static",
+]
