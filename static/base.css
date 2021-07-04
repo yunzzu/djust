@@ -2,6 +2,11 @@
     font-family: 'Tourney', cursive;
 }
 
+.content_font {
+    font-family: 'Nanum Gothic Coding', monospace;
+    /*font-family: 'Gothic A1', sans-serif;*/
+}
+
 .footer_size {
     font-size: .6rem;
 }

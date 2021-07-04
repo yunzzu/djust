@@ -5,17 +5,25 @@
 
 {% block content %}
 
-  <div style="height: 20rem; background-color: #E6E6FA; border-radius: 1rem; margin: 2rem;">
-      <h2>testing</h2>
+  <div class="sort_center" style="border-radius: 1rem; margin: 2rem;">
+      <h2 class="content_font" style="font-size: 1rem;">서핑 surfing</h2>
 
       <form action="/account/hello_world/" method="post">
           {% csrf_token %}
-          <input type="submit" class="btn btn-primary" value="POST">
+          <div>
+              <input type="text" name="hello_world_input">
+          </div>
+          <div>
+              <input type="submit" class="btn btn-primary" value="POST">
+          </div>
       </form>
 
+      <!-- hello_world_output이 있다면 아래의 태그들을 생성해줌 -->
+      {% if hello_world_output %}
       <h1>
           {{ text }}
       </h1>
+      {% endif %}
   </div>
 
 {% endblock %}
