@@ -1,17 +1,23 @@
 
 {% extends 'base.html' %}
+{% load bootstrap5 %}
 
 {% block content %}
 
-    <div class="sort_center">
-        <div>
-            <h5> Login </h5>
+    <div class="sort_center basic_font" style="max-width: 250px; margin: 4rem auto">
+        <div class="login_font2">
+            <h3>Login</h3>
         </div>
+        <br>
         <div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" class="btn btn-primary">
+                <!--{{ form }}-->
+                {% bootstrap_form form %}
+                <br>
+                {% buttons %}
+                    <button type="submit" class="btn btn-secondary activate col-5">Submit</button>
+                {% endbuttons %}
             </form>
         </div>
     </div>
