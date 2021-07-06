@@ -4,7 +4,7 @@
 
 {% block content %}
 
-    <div class="basic_font" style="width: 400px; margin: 0 auto; ">
+    <div class="content_font" style="width: 400px; margin: 0 auto; ">
         <form action="{% url 'accountapp:create' %}" method="post">
             {% csrf_token %}
             <!--{{ form }}-->

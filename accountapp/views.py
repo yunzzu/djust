@@ -6,7 +6,8 @@ from django.urls import reverse, reverse_lazy
 from accountapp.models import HelloWorld
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
+
 
 def hello_world(request):
     if request.method == "POST":
@@ -29,3 +30,7 @@ class AccCreate(CreateView):
     #reverse(함수에서 사용) vs reverse_lazy(클래스에서 사용)
     template_name = 'accountapp/create.html' # 회원가입을 할 때 어느 html파일을 이용해서 볼지
 
+class AccDetail(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'accountapp/detail.html'

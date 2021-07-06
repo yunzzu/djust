@@ -6,17 +6,19 @@
 {% block content %}
 
   <div class="sort_center" style="border-radius: 1rem; margin: 2rem;">
-      <h2 class="content_font" style="font-size: 1rem;">서핑 surfing</h2>
+      <h2 class="content_font" style="font-size: 1rem;">내용을 입력하시오.</h2>
 
       <form action="/account/hello_world/" method="post">
           {% csrf_token %}
           <div>
-              <input type="text" name="hello_world_input">
+              <input type="text" name="hello_world_input" style="width: 600px; height: 200px;">
           </div>
+          <br>
           <div>
-              <input type="submit" class="btn btn-primary" value="POST">
+              <input type="submit" class="btn btn-secondary btn-sm" value="POST">
           </div>
       </form>
+      <br><br>
 
       <!-- hello_world_output이 있다면 아래의 태그들을 생성해줌 -->
       {% if hello_world_list %}

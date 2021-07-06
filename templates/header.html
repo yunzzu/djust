@@ -3,17 +3,21 @@
     <div>
         <h1 class="logo_font">⛵ <b>Summer Vacation</b> 🦑</h1>
     </div>
-    <div>
-        <span>nav1</span>
-        <span>nav2</span>
-        <span>nav3</span>
+    <br><br>
+    <div class="content_font">
         {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:create' %}">
+            <span>join</span>
+        </a>
         <a href="{% url 'accountapp:login' %}?next={{ request.path }}"> <!-- 현재 위치하고 있는 홈페이지 어디든지 next 인자로 넘겨줌 -->
-            <span>𝓁𝑜𝑔𝒾𝓃</span>
+            <span>login</span>
         </a>
         {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}"> <!-- pk에 해당하는 값을 넣어줘야 함 -->
+            <span>mypage</span>
+        </a>
         <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
-            <span>𝓁𝑜𝑔𝑜𝓊𝓉</span>
+            <span>logout</span>
         </a>
         {% endif %}
     </div>
