@@ -3,10 +3,11 @@ from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 
+from accountapp.forms import AccUpdateForm
 from accountapp.models import HelloWorld
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 
 def hello_world(request):
@@ -34,3 +35,9 @@ class AccDetail(DetailView):
     model = User
     context_object_name = 'target_user'
     template_name = 'accountapp/detail.html'
+
+class AccUpdate(UpdateView):
+    model = User
+    form_class = AccUpdateForm  #UserCreationForm을 상속받아서 customize해줌 -> forms.py
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/update.html'
