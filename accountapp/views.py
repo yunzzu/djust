@@ -7,7 +7,7 @@ from accountapp.forms import AccUpdateForm
 from accountapp.models import HelloWorld
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, DetailView, UpdateView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 
 
 def hello_world(request):
@@ -41,3 +41,8 @@ class AccUpdate(UpdateView):
     form_class = AccUpdateForm  #UserCreationForm을 상속받아서 customize해줌 -> forms.py
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
+
+class AccDelete(DeleteView):
+    model = User
+    success_url = reverse_lazy('accountapp:login')
+    template_name = 'accountapp/delete.html'
