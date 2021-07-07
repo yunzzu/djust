@@ -13,7 +13,7 @@
     </div>
     <br>
     <div class="content_font sort_center" style="width: 400px; margin: 0 auto; ">
-        <form action="{% url 'accountapp:delete' pk=user.pk %}" method="post">
+        <form action="{% url 'accountapp:delete' pk=target_user.pk %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-secondary activate col-3">회원탈퇴</button>
         </form>

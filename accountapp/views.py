@@ -38,11 +38,13 @@ class AccDetail(DetailView):
 
 class AccUpdate(UpdateView):
     model = User
+    context_object_name = 'target_user'
     form_class = AccUpdateForm  #UserCreationForm을 상속받아서 customize해줌 -> forms.py
     success_url = reverse_lazy('accountapp:hello_world')
     template_name = 'accountapp/update.html'
 
 class AccDelete(DeleteView):
     model = User
+    context_object_name = 'target_user'
     success_url = reverse_lazy('accountapp:login')
     template_name = 'accountapp/delete.html'
