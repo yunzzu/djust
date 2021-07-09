@@ -5,18 +5,37 @@
 
 <div>
     <div class="sort_center content_font" style="max-width:500px; margin: 4rem auto;">
-        <p>
+        <!--<p>
             {{ target_user.date_joined }}
-        </p>
-        <h2>
-            {{ target_user.username }}
-        </h2>
+        </p>-->
+
+        <img src="{{ target_user.profile.image.url }}" alt=""
+             style="height:16rem; width:16rem; margin-bottom: 2rem;">
+
+        {% if target_user.profile %}
+        <h4>
+            {{ target_user.profile.nickname }}
+            <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                <span style="font-size: .7rem;">프로필편집</span>
+            </a>
+        </h4>
+        {% else %}
+        <a href = "{% url 'profileapp:create' %}">
+            <h2>프로필생성</h2>
+        </a>
+        {% endif %}
+
+        <h6>
+            {{ target_user.profile.message }}
+        </h6>
+
+        <br>
         {% if target_user == user %}
         <a href="{% url 'accountapp:update' pk=user.pk %}">
-            <p>Change Info</p>
+            <p style="font-size: .7rem;">회원정보변경</p>
         </a>
         <a href="{% url 'accountapp:delete' pk=user.pk %}">
-            <p>Quit</p>
+            <p style="font-size: .7rem;">회원탈퇴</p>
         </a>
         {% endif %}
     </div>
