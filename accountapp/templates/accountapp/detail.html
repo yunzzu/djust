@@ -9,25 +9,29 @@
             {{ target_user.date_joined }}
         </p>-->
 
+        {% if target_user.profile %}
         <img src="{{ target_user.profile.image.url }}" alt=""
              style="height:16rem; width:16rem; margin-bottom: 2rem;">
-
-        {% if target_user.profile %}
         <h4>
             {{ target_user.profile.nickname }}
+            {% if target_user == user %}
             <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}">
                 <span style="font-size: .7rem;">프로필편집</span>
             </a>
+            {% endif %}
         </h4>
-        {% else %}
-        <a href = "{% url 'profileapp:create' %}">
-            <h2>프로필생성</h2>
-        </a>
-        {% endif %}
-
         <h6>
             {{ target_user.profile.message }}
         </h6>
+        {% else %}
+            {% if target_user == user %}
+            <a href = "{% url 'profileapp:create' %}">
+                <h2>프로필생성</h2>
+            </a>
+            {% else %}
+            <h4>프로필 없음</h4>
+            {% endif %}
+        {% endif %}
 
         <br>
         {% if target_user == user %}
@@ -41,4 +45,4 @@
     </div>
 </div>
 
-{% endblock%}
+{% endblock %}
