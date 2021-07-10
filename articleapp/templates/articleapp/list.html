@@ -5,8 +5,7 @@
 {% block content %}
     <style>
          .container div {
-          width: 280px;
-          height: 500px;
+          width: 270px;
           display: flex;
           justify-content: center;
           align-items: center;
@@ -18,49 +17,25 @@
            border-radius: 8px;
            }
     </style>
-
+    {% if article_list %}
     <div class="container">
-        <div>
-            <img src="https://picsum.photos/200/300" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/340" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/260" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/360" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/444" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/280" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/410" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/200" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/270" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/400" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/290" alt="">
-        </div>
-        <div>
-            <img src="https://picsum.photos/200/450" alt="">
-        </div>
+        {% for article in article_list %}
+        <a href="{% url 'articleapp:detail' pk=article.pk %}">
+            <div>
+                {% include 'snippets/card.html' with article=article %}
+            </div>
+        </a>
+        {% endfor %}
     </div>
+    <script src="{% static 'js/magicgrid.js' %}"></script>
+    {% else %}
+    <div class="sort_center"><h2>Empty</h2></div>
+    {% endif %}
+
+    {%include 'snippets/pagination.html' with page_obj=page_obj %}
 
     <div class="sort_center content_font">
         <a href="{% url 'articleapp:create' %}" class="btn btn-secondary col-3 mt-3 mb-3" style="margin-top: 5rem;">생성</a>
     </div>
 
-    <script src="{% static 'js/magicgrid.js' %}"></script>
 {% endblock %}

@@ -7,18 +7,24 @@
 <div class="content_font sort_center">
     <h2>
         {{ target_article.title }}
+        <h6>작성자 | {{ target_article.writer.profile.nickname }}</h6>
     </h2>
     <img src="{{ target_article.image.url }}" alt=""
         style="height:30rem; margin-top: 2rem; margin-bottom: 2rem;">
     <p>
         {{ target_article.content }}
     </p>
-    <a href="{% url 'articleapp:update' pk=target_article.pk %}">
+
+    {% if target_article.writer == user %}
+    <a href="{% url 'articleapp:update' pk=target_article.pk %}"
+        class="btn btn-outline-info btn-sm">
         <p>수정</p>
     </a>
-    <a href="{% url 'articleapp:delete' pk=target_article.pk %}">
+    <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
+        class="btn btn-outline-danger btn-sm">
         <p>삭제</p>
     </a>
+    {% endif %}
 
 </div>
 
