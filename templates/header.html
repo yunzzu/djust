@@ -1,12 +1,15 @@
 
 <div class="sort_center" style="margin: 3rem 0;">
     <div>
+        <br><br>
         <a href="{% url 'accountapp:hello_world' %}">
             <h1 class="logo_font">⛵ <b>Summer Vacation</b> 🦑</h1>
         </a>
     </div>
-    <br><br>
     <div class="content_font">
+        <a href="{% url 'articleapp:list' %}">
+            <span>shortcuts</span>
+        </a>
         {% if not user.is_authenticated %}
         <a href="{% url 'accountapp:create' %}">
             <span>join</span>
