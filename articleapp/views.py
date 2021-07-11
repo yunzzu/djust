@@ -2,11 +2,13 @@ from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
 
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
+from django.views.generic.edit import FormMixin
 
 from articleapp.decorators import ac_ownership_required
 from django.contrib.auth.decorators import login_required
 from articleapp.forms import AcCreationForm
 from articleapp.models import Article
+from commentapp.forms import CmCreationForm
 
 
 @method_decorator(login_required, 'get')
@@ -26,8 +28,9 @@ class AcCreateView(CreateView):
         return reverse('articleapp:detail', kwargs={'pk': self.object.pk})
 
 
-class AcDetailView(DetailView):
+class AcDetailView(DetailView, FormMixin):
     model = Article
+    form_class = CmCreationForm
     context_object_name = 'target_article'
     template_name = 'articleapp/detail.html'
 

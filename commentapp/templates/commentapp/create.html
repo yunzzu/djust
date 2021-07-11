@@ -1,0 +1,25 @@
+
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <div class="content_font" style="width: 400px; margin: 0 auto; ">
+        <form action="{% url 'commentapp:create' %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+
+            <!--로그인이 되어있을 때만 댓글을 달 수 있게-->
+            {% if user.is_authenticated %}
+            <input type="submit" class="btn btn-secondary activate col-3">
+            {% else %}
+            <a href="{% url 'accountapp:login' %}?next={{ request.path }}"
+                class="btn btn-ligth btn-sm">
+                로그인이 필요한 서비스입니다.
+            </a>
+            {% endif %}
+
+            <input type="hidden" name="article_pk" value="{{ article.pk }}">
+        </form>
+    </div>
+
+{% endblock %}
