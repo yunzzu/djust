@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+    <br>
+    <div>
+        <p class="content_font sort_center">
+            '{{ target_comment.content }}'을(를) 삭제하시겠습니까?
+        </p>
+    </div>
+    <br>
+    <div class="content_font sort_center" style="width: 400px; margin: 0 auto; ">
+        <form action="{% url 'commentapp:delete' pk=target_comment.pk %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-secondary activate col-3">삭제</button>
+        </form>
+    </div>
+    <br>
+
+{% endblock %}
