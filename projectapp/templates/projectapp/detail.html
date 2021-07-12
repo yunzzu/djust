@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="content_font">
+        <div class="sort_center" style="max-width: 500px; margin: 4rem auto;">
+            <img src="{{ target_project.image.url }}" alt=""
+                style="height: 30rem; margin-bottom: 2rem; object-fit: cover;">
+            <h3>
+                {{ target_project.title }}
+            </h3>
+            <br>
+            <h6>
+                {{ target_project.description }}
+            </h6>
+        </div>
+    </div>
+
+{% endblock %}

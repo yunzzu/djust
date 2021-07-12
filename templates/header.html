@@ -6,22 +6,26 @@
             <h1 class="logo_font">⛵ <b>Summer Vacation</b> 🦑</h1>
         </a>
     </div>
-    <div class="content_font">
-        <a href="{% url 'articleapp:list' %}">
+
+    <div class="content_font" style="margin-top: 1.5rem;">
+        <a href="{% url 'articleapp:list' %}" class="header_space">
             <span>gallery</span>
         </a>
+        <a href="{% url 'projectapp:list' %}" class="header_space">
+            <span>project</span>
+        </a>
         {% if not user.is_authenticated %}
-        <a href="{% url 'accountapp:create' %}">
+        <a href="{% url 'accountapp:create' %}" class="header_space">
             <span>join</span>
         </a>
-        <a href="{% url 'accountapp:login' %}?next={{ request.path }}"> <!-- 현재 위치하고 있는 홈페이지 어디든지 next 인자로 넘겨줌 -->
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="header_space"> <!-- 현재 위치하고 있는 홈페이지 어디든지 next 인자로 넘겨줌 -->
             <span>login</span>
         </a>
         {% else %}
-        <a href="{% url 'accountapp:detail' pk=user.pk %}"> <!-- pk에 해당하는 값을 넣어줘야 함 -->
+        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="header_space"> <!-- pk에 해당하는 값을 넣어줘야 함 -->
             <span>mypage</span>
         </a>
-        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="header_space">
             <span>logout</span>
         </a>
         {% endif %}
