@@ -5,7 +5,19 @@
     <div class="content_font">
         <div class="sort_center" style="max-width: 500px; margin: 4rem auto;">
             <img src="{{ target_project.image.url }}" alt=""
-                style="height: 11rem; width: 11rem; border-radius: 70%; margin-bottom: 2rem; object-fit: cover;">
+                style="height: 11rem; width: 11rem; border-radius: 70%; margin-bottom: .5rem; object-fit: cover;">
+            <div class="sort_center">
+                {% if user.is_authenticated %}
+                    {% if not subscription %}
+                    <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
+                        class="btn btn-outline-dark btn-sm">구독</a>
+                    {% else %}
+                    <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
+                        class="btn btn-outline-dark btn-sm">구독취소</a>
+                    {% endif %}
+                {% endif %}
+            </div>
+            <br>
             <h3>
                 {{ target_project.title }}
             </h3>
