@@ -11,9 +11,9 @@
     </h2>
     <img src="{{ target_article.image.url }}" alt=""
         style="width:20%; margin-top: 2rem; margin-bottom: 2rem;">
-    <p>
-        {{ target_article.content }}
-    </p>
+    <div style="margin-bottom: 2rem;">
+        {{ target_article.content | safe }}
+    </div>
 
     {% if target_article.writer == user %}
     <a href="{% url 'articleapp:update' pk=target_article.pk %}"
@@ -25,7 +25,7 @@
         <p>삭제</p>
     </a>
     {% endif %}
-
+    <br><br>
     {% for comment in target_article.comment.all %}
         {% include 'commentapp/detail.html' with comment=comment %}
     {% endfor %}
