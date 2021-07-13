@@ -18,7 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from articleapp.views import AcListView
+
 urlpatterns = [
+    path('', AcListView.as_view(), name='home'),
     path('admin/', admin.site.urls),
     path('account/', include('accountapp.urls')),  #account 앱 내부(폴더 안)에 있는 모든 하위 디렉들도 모두 가져옴
     path('profiles/', include('profileapp.urls')),

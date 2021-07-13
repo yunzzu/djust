@@ -15,8 +15,9 @@
         <h4>
             {{ target_user.profile.nickname }}
             {% if target_user == user %}
-            <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}">
-                <span style="font-size: .7rem;">프로필편집</span>
+            <a href ="{% url 'profileapp:update' pk=target_user.profile.pk %}"
+                class="material-icons">
+                <span style="font-size: .7rem;">edit</span>
             </a>
             {% endif %}
         </h4>

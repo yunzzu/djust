@@ -8,7 +8,6 @@ from django.views.generic.list import MultipleObjectMixin
 
 from accountapp.decorators import acc_ownership_required
 from accountapp.forms import AccUpdateForm
-from accountapp.models import HelloWorld
 from django.http import HttpResponse, HttpResponseRedirect
 #from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
@@ -16,21 +15,6 @@ from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from articleapp.models import Article
 
 has_ownership = [acc_ownership_required, login_required] # 이 배열 안에 있는 decorator들을 모두 확인해줌 -> 코드 2줄로 줄임
-
-@login_required
-def hello_world(request):
-    if request.method == "POST":
-        temp = request.POST.get('hello_world_input')
-
-        nhw = HelloWorld()  #models.py
-        nhw.text = temp
-        nhw.save()
-
-        hello_world_list = HelloWorld.objects.all()
-        return HttpResponseRedirect(reverse('accountapp:hello_world'))
-    else:
-        hello_world_list = HelloWorld.objects.all()
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
 
 class AccCreate(CreateView):
     model = User
