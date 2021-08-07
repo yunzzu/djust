@@ -19,7 +19,7 @@ has_ownership = [acc_ownership_required, login_required] # 이 배열 안에 있
 class AccCreate(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy('accountapp:hello_world')  # 계정 만드는 것에 성공했다면 어느 경로로 다시 연결해야할지
+    success_url = reverse_lazy('articleapp:list')  # 계정 만드는 것에 성공했다면 어느 경로로 다시 연결해야할지
     #reverse(함수에서 사용) vs reverse_lazy(클래스에서 사용)
     template_name = 'accountapp/create.html' # 회원가입을 할 때 어느 html파일을 이용해서 볼지
 
