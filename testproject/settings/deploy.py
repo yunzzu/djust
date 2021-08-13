@@ -1,6 +1,14 @@
 
 from .base import *
 
+def read_secret(secret_name):
+    file = open('/run/secrets/' + secret_name)
+    secret = file.read()
+    secret = secret.rstrip().lstrip()
+    file.close()
+    return secret
+
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -15,7 +23,7 @@ environ.Env.read_env(
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')  #env파일에서 secret key를 읽어옴
+SECRET_KEY = read_secret('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False       #개발중인 상태
@@ -29,7 +37,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', #mysql을 써서 mariadb와 연동시킴
         'NAME': 'django',
         'USER': 'django',
-        'PASSWORD': 'password1234',
+        'PASSWORD': read_secret('MYSQL_ROOT_HOST'),
         'HOST': 'mariadb',
         'PORT': '3306',
     }
